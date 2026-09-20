@@ -1,0 +1,174 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowRight, Home, User, Code2, Briefcase, GraduationCap, Mail } from 'lucide-react';
+
+interface NavbarProps {
+  activeSection: string;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
+  const navLinks = [
+    { name: 'Home', href: '#home', icon: Home },
+    { name: 'About', href: '#about', icon: User },
+    { name: 'Skills', href: '#skills', icon: Code2 },
+    { name: 'Projects', href: '#projects', icon: Briefcase },
+    { name: 'Achievements', href: '#achievements', icon: GraduationCap },
+    { name: 'Contact', href: '#contact', icon: Mail },
+  ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    const targetElement = document.querySelector(href);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled || mobileMenuOpen
+          ? 'bg-[#080F1D]/95 backdrop-blur-md border-b border-white/10 shadow-xl py-3'
+          : 'bg-transparent py-4 sm:py-5'
+      }`}
+    >
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Developer Logo */}
+        <a
+          href="#home"
+          onClick={(e) => handleNavClick(e, '#home')}
+          className="flex items-center gap-1 text-xl font-bold tracking-tight font-mono group py-1"
+          aria-label="Phanindra Uddagiri Portfolio Home"
+        >
+          <span className="text-[#5B7CFF] group-hover:text-[#8B5CF6] transition-colors">{'{'}</span>
+          <span className="text-white tracking-widest px-1">PU</span>
+          <span className="text-[#8B5CF6] group-hover:text-[#5B7CFF] transition-colors">{'}'}</span>
+        </a>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-7 lg:space-x-8">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.substring(1);
+            return (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`text-sm font-medium transition-colors relative py-1 ${
+                  isActive
+                    ? 'text-white font-semibold'
+                    : 'text-slate-300 hover:text-white'
+                }`}
+              >
+                {link.name}
+                {isActive && (
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#5B7CFF] to-[#8B5CF6] rounded-full" />
+                )}
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* Right CTA Button (Desktop) */}
+        <div className="hidden md:block">
+          <a
+            href="#contact"
+            onClick={(e) => handleNavClick(e, '#contact')}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-purple-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <span>Let's Talk</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </a>
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Drawer Overlay */}
+      {mobileMenuOpen && (
+        <div className="md:hidden fixed inset-x-0 top-[61px] bottom-0 bg-[#080F1D]/98 backdrop-blur-2xl z-40 flex flex-col justify-between px-6 pt-6 pb-10 overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="space-y-2">
+            <span className="text-[11px] font-bold tracking-widest text-[#5B7CFF] uppercase block px-3 mb-2">
+              NAVIGATION MENU
+            </span>
+            <nav className="space-y-1">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.substring(1);
+                const IconComp = link.icon;
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-base font-medium transition-all ${
+                      isActive
+                        ? 'bg-gradient-to-r from-[#4F7CFF]/15 to-[#8B5CF6]/15 text-white font-semibold border border-blue-500/20'
+                        : 'text-slate-300 hover:text-white hover:bg-slate-800/40'
+                    }`}
+                  >
+                    <div className={`p-2 rounded-xl ${isActive ? 'bg-[#4F7CFF] text-white' : 'bg-slate-800/80 text-slate-400'}`}>
+                      <IconComp className="w-4 h-4" />
+                    </div>
+                    <span>{link.name}</span>
+                    {isActive && (
+                      <span className="ml-auto w-2 h-2 rounded-full bg-[#5B7CFF]" />
+                    )}
+                  </a>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className="pt-6 border-t border-slate-800/80 space-y-4">
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, '#contact')}
+              className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl text-base font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-transform"
+            >
+              <span>Let's Connect</span>
+              <ArrowRight className="w-5 h-5" />
+            </a>
+            
+            <p className="text-center text-xs text-slate-500">
+              © {new Date().getFullYear()} Phanindra Uddagiri
+            </p>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};
+

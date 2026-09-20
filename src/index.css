@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --font-handwriting: 'Caveat', cursive;
+
+  --color-hero-bg: #0B1220;
+  --color-hero-dark: #080F1D;
+  --color-hero-card: #101827;
+  
+  --color-brand-blue: #4F7CFF;
+  --color-brand-blue-hover: #3B66FF;
+  --color-brand-purple: #8B5CF6;
+  
+  --color-light-bg: #FFFFFF;
+  --color-light-sec: #F7F9FC;
+  --color-light-border: #E5EAF2;
+  
+  --color-text-main: #101828;
+  --color-text-muted: #667085;
+}
+
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color-scheme: light dark;
+  background-color: #0B1220;
+  color: #101828;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background-color: #FFFFFF;
+}
+
+/* Custom Gradients */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, #4F7CFF 0%, #8B5CF6 100%);
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg, #5B7CFF 0%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-hero {
+  background: linear-gradient(135deg, #60A5FA 0%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Shadows & Borders */
+.card-shadow {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03), 0px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-shadow-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-shadow-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 12px 30px rgba(79, 124, 255, 0.08), 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Glass & Code Card */
+.code-card-glass {
+  background: rgba(16, 24, 39, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(79, 124, 255, 0.25);
+}
+
+/* Handwriting Font Utility */
+.font-handwriting {
+  font-family: 'Caveat', cursive;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B1220;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
