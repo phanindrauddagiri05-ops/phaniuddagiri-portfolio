@@ -49,22 +49,21 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || mobileMenuOpen
-          ? 'bg-[#080F1D]/95 backdrop-blur-md border-b border-white/10 shadow-xl py-3'
-          : 'bg-transparent py-4 sm:py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || mobileMenuOpen
+        ? 'bg-[#080F1D] border-b border-slate-800 shadow-xl py-3.5'
+        : 'bg-transparent py-4 sm:py-5'
+        }`}
     >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Developer Logo */}
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
-          className="flex items-center gap-1 text-xl font-bold tracking-tight font-mono group py-1"
+          className="flex items-center gap-1 text-sm font-bold tracking-tight font-mono group py-1"
           aria-label="Phanindra Uddagiri Portfolio Home"
         >
           <span className="text-[#5B7CFF] group-hover:text-[#8B5CF6] transition-colors">{'{'}</span>
-          <span className="text-white tracking-widest px-1">PU</span>
+          <span className="text-white tracking-widest px-1">PHANINDRA UDDAGIRI</span>
           <span className="text-[#8B5CF6] group-hover:text-[#5B7CFF] transition-colors">{'}'}</span>
         </a>
 
@@ -77,11 +76,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-sm font-medium transition-colors relative py-1 ${
-                  isActive
-                    ? 'text-white font-semibold'
-                    : 'text-slate-300 hover:text-white'
-                }`}
+                className={`text-sm font-medium transition-colors relative py-1 ${isActive
+                  ? 'text-white font-semibold'
+                  : 'text-slate-300 hover:text-white'
+                  }`}
               >
                 {link.name}
                 {isActive && (
@@ -108,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/60 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors"
+            className="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={mobileMenuOpen}
           >
@@ -117,34 +115,43 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer Overlay */}
+      {/* Mobile Menu Drawer Overlay (Solid bg-[#080F1D] so background content never bleeds through) */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[61px] bottom-0 bg-[#080F1D]/98 backdrop-blur-2xl z-40 flex flex-col justify-between px-6 pt-6 pb-10 overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="md:hidden fixed top-[65px] inset-x-0 bottom-0 bg-[#080F1D] z-50 flex flex-col justify-between px-4 pt-4 pb-6 overflow-y-auto border-t border-slate-800/80 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+
           <div className="space-y-2">
-            <span className="text-[11px] font-bold tracking-widest text-[#5B7CFF] uppercase block px-3 mb-2">
+            <span className="text-[10px] font-bold tracking-widest text-[#5B7CFF] uppercase block px-1 mb-1">
               NAVIGATION MENU
             </span>
+
             <nav className="space-y-1">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.substring(1);
                 const IconComp = link.icon;
+
                 return (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className={`flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-base font-medium transition-all ${
-                      isActive
-                        ? 'bg-gradient-to-r from-[#4F7CFF]/15 to-[#8B5CF6]/15 text-white font-semibold border border-blue-500/20'
-                        : 'text-slate-300 hover:text-white hover:bg-slate-800/40'
-                    }`}
+                    className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium transition-all ${isActive
+                      ? 'bg-gradient-to-r from-[#4F7CFF]/20 to-[#8B5CF6]/20 text-white font-semibold border border-blue-500/30'
+                      : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
+                      }`}
                   >
-                    <div className={`p-2 rounded-xl ${isActive ? 'bg-[#4F7CFF] text-white' : 'bg-slate-800/80 text-slate-400'}`}>
-                      <IconComp className="w-4 h-4" />
+                    <div
+                      className={`p-1.5 rounded-lg ${isActive
+                        ? 'bg-[#4F7CFF] text-white'
+                        : 'bg-slate-800 text-slate-400'
+                        }`}
+                    >
+                      <IconComp className="w-3.5 h-3.5" />
                     </div>
+
                     <span>{link.name}</span>
+
                     {isActive && (
-                      <span className="ml-auto w-2 h-2 rounded-full bg-[#5B7CFF]" />
+                      <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#5B7CFF]" />
                     )}
                   </a>
                 );
@@ -152,17 +159,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             </nav>
           </div>
 
-          <div className="pt-6 border-t border-slate-800/80 space-y-4">
+          <div className="pt-4 border-t border-slate-800/80 space-y-3">
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl text-base font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-transform"
+              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-transform"
             >
               <span>Let's Connect</span>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
-            
-            <p className="text-center text-xs text-slate-500">
+
+            <p className="text-center text-[10px] text-slate-500">
               © {new Date().getFullYear()} Phanindra Uddagiri
             </p>
           </div>
@@ -171,4 +178,5 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
     </header>
   );
 };
+
 

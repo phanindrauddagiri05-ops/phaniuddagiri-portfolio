@@ -18,14 +18,14 @@ export const Hero: React.FC = () => {
         {/* ========================================================= */}
         {/* MOBILE VIEW (< lg screens): Eyebrow -> Image -> Text & Details */}
         {/* ========================================================= */}
-        <div className="flex flex-col items-center lg:hidden space-y-6 text-center">
-
+        <div className="flex flex-col items-center lg:hidden space-y-5 text-center">
+          
           {/* 1. Eyebrow Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="self-start inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold tracking-wider text-[#60A5FA] uppercase"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold tracking-wider text-[#60A5FA] uppercase"
           >
             <span>{eyebrow}</span>
           </motion.div>
@@ -35,22 +35,22 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="relative w-full max-w-[320px] sm:max-w-[380px] aspect-square flex items-center justify-center my-2"
+            className="relative w-full max-w-[320px] sm:max-w-[360px] aspect-square flex items-center justify-center my-2"
           >
             {/* Circular Gradient Backdrop */}
-            <div className="absolute w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] rounded-full bg-gradient-to-br from-[#3B82F6] via-[#6366F1] to-[#8B5CF6] opacity-90 blur-[1px] shadow-2xl shadow-purple-500/30" />
+            <div className="absolute w-[210px] h-[210px] sm:w-[250px] sm:h-[250px] rounded-full bg-gradient-to-br from-[#3B82F6] via-[#6366F1] to-[#8B5CF6] opacity-90 blur-[1px] shadow-2xl shadow-purple-500/30" />
 
             {/* Profile Image Frame */}
             <div className="relative z-10 p-1.5 rounded-full bg-gradient-to-br from-[#4F7CFF] via-[#6366F1] to-[#8B5CF6] shadow-2xl shadow-blue-500/20">
               <img
                 src={avatar}
                 alt={name}
-                className="w-[250px] h-[250px] sm:w-[250px] sm:h-[250px] object-cover rounded-full bg-slate-900 border-2 border-white/20"
+                className="w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] object-cover rounded-full bg-slate-900 border-2 border-white/20"
               />
             </div>
 
             {/* Handwritten Note Top-Right */}
-            <div className="absolute top-1 right-1 sm:top-2 sm:right-6 z-20 pointer-events-none select-none">
+            <div className="absolute top-1 right-2 sm:top-2 sm:right-6 z-20 pointer-events-none select-none">
               <div className="font-handwriting text-slate-200 text-sm sm:text-lg leading-tight font-bold rotate-6 drop-shadow">
                 Build<br />
                 Learn<br />
@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="absolute -bottom-4 right-0 sm:right-2 z-30 code-card-glass rounded-xl p-2.5 sm:p-3 shadow-2xl max-w-[165px] sm:max-w-[195px] text-left"
+              className="absolute -bottom-3 right-0 sm:right-2 z-30 code-card-glass rounded-xl p-2.5 sm:p-3 shadow-2xl max-w-[165px] sm:max-w-[190px] text-left"
             >
               {/* Card Window Controls */}
               <div className="flex items-center gap-1.5 mb-1.5">
@@ -77,7 +77,7 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Monospace Code snippet */}
-              <div className="font-mono text-[7px] sm:text-[7px] leading-snug">
+              <div className="font-mono text-[10px] sm:text-[11px] leading-snug">
                 <div>
                   <span className="text-purple-400">while</span>{' '}
                   <span className="text-slate-300">(</span>
@@ -102,7 +102,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight pt-2"
+            className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight pt-1"
           >
             I'm{' '}
             <span className="bg-gradient-to-r from-[#60A5FA] via-[#818CF8] to-[#C084FC] bg-clip-text text-transparent">
@@ -115,7 +115,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="text-[12px] font-medium text-slate-200 leading-snug max-w-sm"
+            className="text-xs sm:text-sm font-medium text-slate-200 leading-relaxed max-w-sm"
           >
             {role}
           </motion.h2>
@@ -125,7 +125,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-sm sm:text-base text-slate-400 max-w-md leading-relaxed"
+            className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed"
           >
             {bio}
           </motion.p>
@@ -135,7 +135,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="flex flex-row items-center gap-3.5 w-full max-w-xs pt-2"
+            className="flex flex-row items-center justify-center gap-3 w-full max-w-sm pt-2"
           >
             <a
               href="#projects"
@@ -145,19 +145,19 @@ export const Hero: React.FC = () => {
                   behavior: 'smooth',
                 });
               }}
-              className="inline-flex items-center justify-center gap-2 px-1.5 py-1.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-lg shadow-blue-500/25 active:translate-y-0 text-center"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-lg shadow-blue-500/25 active:translate-y-0 text-center"
             >
-              <span>View My Projects</span>
+              <span>View Projects</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
 
             <a
               href="#"
               onClick={(e) => e.preventDefault()}
-              className="inline-flex items-center justify-center gap-1.5 px-1.5 py-1.5 rounded-full text-xs font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 text-center"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 text-center"
             >
               <Download className="w-3.5 h-3.5 text-slate-300" />
-              <span>Download Resume</span>
+              <span>Resume</span>
             </a>
           </motion.div>
 

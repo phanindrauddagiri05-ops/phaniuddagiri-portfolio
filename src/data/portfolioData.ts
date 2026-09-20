@@ -43,7 +43,10 @@ export const portfolioData = {
     socials: {
       github: "https://github.com/phanindrauddagiri05-ops",
       linkedin: "https://www.linkedin.com/in/phanindra-uddagiri-069851343/",
-      email: "mailto:phanidrauddagiri05@gmail.com"
+      email: "mailto:phanidrauddagiri05@gmail.com",
+      rawEmail: "phanidrauddagiri05@gmail.com",
+      whatsapp: "919441055486",
+      phone: "+91 9441055486"
     }
   },
   stats: [
