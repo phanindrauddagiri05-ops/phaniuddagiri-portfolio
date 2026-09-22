@@ -18,7 +18,7 @@ export const Hero: React.FC = () => {
         {/* ========================================================= */}
         {/* MOBILE VIEW (< lg screens): Eyebrow -> Image -> Text & Details */}
         {/* ========================================================= */}
-        <div className="flex flex-col items-center lg:hidden space-y-5 text-center">
+        <div className="flex flex-col items-start lg:hidden space-y-5 text-left">
 
           {/* 1. Eyebrow Badge */}
           <motion.div
@@ -50,7 +50,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Handwritten Note Top-Right */}
-            <div className="absolute top-1 right-2 sm:top-2 sm:right-6 z-20 pointer-events-none select-none">
+            <div className="absolute top-1 right-6 sm:top-8 sm:right-6 z-20 pointer-events-none select-none">
               <div className="font-handwriting text-slate-200 text-sm sm:text-lg leading-tight font-bold rotate-6 drop-shadow">
                 Build<br />
                 Learn<br />
@@ -77,7 +77,7 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Monospace Code snippet */}
-              <div className="font-mono text-[10px] sm:text-[11px] leading-snug">
+              <div className="font-mono text-[8px] sm:text-[9px] leading-snug">
                 <div>
                   <span className="text-purple-400">while</span>{' '}
                   <span className="text-slate-300">(</span>

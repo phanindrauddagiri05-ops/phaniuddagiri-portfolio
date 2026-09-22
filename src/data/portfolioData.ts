@@ -46,7 +46,7 @@ export const portfolioData = {
       linkedin: "https://www.linkedin.com/in/phanindra-uddagiri-069851343/",
       email: "mailto:phanidrauddagiri05@gmail.com",
       rawEmail: "phanidrauddagiri05@gmail.com",
-      whatsapp: "9441055486",
+      whatsapp: "+91 9441055486",
       phone: "+91 9441055486"
     }
   },

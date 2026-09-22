@@ -108,7 +108,7 @@ export const ContactCTA: React.FC = () => {
 
         {/* Main Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start">
-          
+
           {/* Left Column: Direct Contact Info & Social Cards */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -156,7 +156,7 @@ export const ContactCTA: React.FC = () => {
                       WhatsApp Chat
                     </div>
                     <div className="text-xs sm:text-sm font-semibold text-white mt-0.5 truncate group-hover:text-emerald-300 transition-colors">
-                      +{whatsappNum.substring(0, 2)} {whatsappNum.substring(2)}
+                      {whatsappNum.substring(0, 2)} {whatsappNum.substring(2)}
                     </div>
                   </div>
                 </a>
@@ -171,7 +171,7 @@ export const ContactCTA: React.FC = () => {
                       Location & College
                     </div>
                     <div className="text-xs sm:text-sm font-semibold text-white mt-0.5">
-                      Raghu Engineering College, Visakhapatnam, India
+                      Raghu Engineering College, Visakhapatnam, Andhra Pradesh, India
                     </div>
                   </div>
                 </div>
