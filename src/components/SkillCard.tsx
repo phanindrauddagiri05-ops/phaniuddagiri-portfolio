@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 interface TechIconProps {
   name: string;
@@ -178,14 +179,20 @@ interface SkillCardProps {
 
 export const SkillCard: React.FC<SkillCardProps> = ({ name }) => {
   return (
-    <div className="bg-white border border-[#E5EAF2] rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center space-y-2 sm:space-y-3 card-shadow card-shadow-hover transition-all duration-300 group cursor-default active:scale-95">
+    <motion.div
+      whileHover={{ y: -6, scale: 1.04 }}
+      whileTap={{ scale: 0.96 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      className="bg-white border border-[#E5EAF2] hover:border-[#4F7CFF]/50 rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center space-y-2 sm:space-y-3 shadow-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 group cursor-pointer select-none"
+    >
       <div className="p-1.5 sm:p-2 rounded-xl group-hover:scale-110 transition-transform duration-300">
         <TechIcon name={name} className="w-8 h-8 sm:w-11 sm:h-11" />
       </div>
       <span className="text-xs sm:text-sm font-semibold text-[#101828] tracking-tight group-hover:text-[#4F7CFF] transition-colors text-center">
         {name}
       </span>
-    </div>
+    </motion.div>
   );
 };
+
 

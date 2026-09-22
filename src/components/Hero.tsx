@@ -50,7 +50,11 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* Handwritten Note Top-Right */}
-            <div className="absolute top-1 right-6 sm:top-8 sm:right-6 z-20 pointer-events-none select-none">
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute top-1 right-6 sm:top-8 sm:right-6 z-20 pointer-events-none select-none"
+            >
               <div className="font-handwriting text-slate-200 text-sm sm:text-lg leading-tight font-bold rotate-6 drop-shadow">
                 Build<br />
                 Learn<br />
@@ -60,14 +64,18 @@ export const Hero: React.FC = () => {
               <svg className="w-5 h-5 sm:w-7 sm:h-7 text-blue-400 stroke-current ml-2 -mt-1 transform rotate-45" viewBox="0 0 24 24" fill="none" strokeWidth="2">
                 <path d="M4 14c4 4 10 4 14-2m0 0l-4-1m4 1l-1 4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </div>
+            </motion.div>
 
-            {/* Compact Floating Code Card (Positioned safely below right corner without overlapping face) */}
+            {/* Compact Floating Code Card */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="absolute -bottom-3 right-0 sm:right-2 z-30 code-card-glass rounded-xl p-2.5 sm:p-3 shadow-2xl max-w-[165px] sm:max-w-[190px] text-left"
+              animate={{ opacity: 1, y: [0, -5, 0] }}
+              transition={{
+                opacity: { duration: 0.5, delay: 0.2 },
+                y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' }
+              }}
+              whileHover={{ scale: 1.05 }}
+              className="absolute -bottom-3 right-0 sm:right-2 z-30 code-card-glass rounded-xl p-2.5 sm:p-3 shadow-2xl max-w-[165px] sm:max-w-[190px] text-left cursor-pointer"
             >
               {/* Card Window Controls */}
               <div className="flex items-center gap-1.5 mb-1.5">
@@ -152,9 +160,10 @@ export const Hero: React.FC = () => {
             </a>
 
             <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 text-center"
+              href={portfolioData.personal.socials.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 text-center transition-all hover:scale-105 active:scale-95"
             >
               <Download className="w-3.5 h-3.5 text-slate-300" />
               <span>Resume</span>
@@ -224,9 +233,10 @@ export const Hero: React.FC = () => {
               </a>
 
               <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 transition-all transform hover:-translate-y-0.5"
+                href={portfolioData.personal.socials.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
               >
                 <Download className="w-4 h-4 text-slate-300" />
                 <span>Download Resume</span>
@@ -261,7 +271,11 @@ export const Hero: React.FC = () => {
               </div>
 
               {/* Handwritten Note Top-Right */}
-              <div className="absolute top-4 right-4 z-20 pointer-events-none select-none">
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-4 right-4 z-20 pointer-events-none select-none"
+              >
                 <div className="font-handwriting text-slate-200 text-xl leading-tight font-bold rotate-6 drop-shadow">
                   Build<br />
                   Learn<br />
@@ -272,14 +286,18 @@ export const Hero: React.FC = () => {
                 <svg className="w-8 h-8 text-blue-400 stroke-current ml-2 -mt-1 transform rotate-45" viewBox="0 0 24 24" fill="none" strokeWidth="2">
                   <path d="M4 14c4 4 10 4 14-2m0 0l-4-1m4 1l-1 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </div>
+              </motion.div>
 
               {/* Floating Code Card Bottom-Right */}
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="absolute -bottom-2 -right-6 z-30 code-card-glass rounded-xl p-4 shadow-2xl max-w-[230px]"
+                animate={{ opacity: 1, y: [0, -6, 0] }}
+                transition={{
+                  opacity: { duration: 0.6, delay: 0.3 },
+                  y: { duration: 5, repeat: Infinity, ease: 'easeInOut' }
+                }}
+                whileHover={{ scale: 1.05 }}
+                className="absolute -bottom-2 -right-6 z-30 code-card-glass rounded-xl p-4 shadow-2xl max-w-[230px] cursor-pointer"
               >
                 {/* Card Window Controls */}
                 <div className="flex items-center gap-1.5 mb-2.5">

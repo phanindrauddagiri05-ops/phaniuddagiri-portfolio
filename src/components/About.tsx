@@ -46,14 +46,19 @@ export const About: React.FC = () => {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 pt-6 border-t border-slate-100">
               {stats.map((stat, idx) => (
-                <div key={idx} className="bg-[#F7F9FC] sm:bg-transparent p-4 sm:p-0 rounded-2xl sm:rounded-none space-y-1 text-center sm:text-left border border-slate-100 sm:border-0">
-                  <div className="text-2xl sm:text-4xl font-extrabold text-[#101828] tracking-tight bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] sm:bg-none bg-clip-text text-transparent sm:text-[#101828]">
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -4, scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                  className="bg-[#F7F9FC] sm:bg-slate-50/80 p-4 sm:p-3 rounded-2xl space-y-1 text-center sm:text-left border border-slate-200/80 shadow-2xs hover:shadow-md hover:border-blue-300 transition-all cursor-default"
+                >
+                  <div className="text-2xl sm:text-3xl font-extrabold text-[#101828] tracking-tight bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] bg-clip-text text-transparent">
                     {stat.value}
                   </div>
-                  <div className="text-xs sm:text-sm font-medium text-[#667085]">
+                  <div className="text-xs font-semibold text-[#667085]">
                     {stat.label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -67,13 +72,18 @@ export const About: React.FC = () => {
             className="lg:col-span-5 relative w-full"
           >
             {/* Card Background */}
-            <div className="bg-[#F7F9FC] border border-[#E5EAF2] rounded-3xl p-5 sm:p-8 card-shadow relative overflow-hidden">
+            <div className="bg-[#F7F9FC] border border-[#E5EAF2] hover:border-blue-400/40 rounded-3xl p-5 sm:p-8 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 relative overflow-hidden">
               <div className="space-y-5 sm:space-y-6">
                 {infoList.map((item, index) => {
                   const IconComp = item.icon;
                   return (
-                    <div key={index} className="flex items-start gap-3.5 sm:gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-[#4F7CFF]/10 text-[#4F7CFF] flex items-center justify-center shrink-0 mt-0.5">
+                    <motion.div
+                      key={index}
+                      whileHover={{ x: 4 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex items-start gap-3.5 sm:gap-4 p-2 rounded-xl transition-colors hover:bg-white/90"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-[#4F7CFF]/10 text-[#4F7CFF] flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
                         <IconComp className="w-5 h-5" />
                       </div>
                       <div className="min-w-0 flex-1">
@@ -84,21 +94,26 @@ export const About: React.FC = () => {
                           {item.value}
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
 
               {/* Handwritten Quote overlay */}
               <div className="mt-6 pt-5 border-t border-slate-200/70 flex justify-end">
-                <div className="text-right">
+                <motion.div
+                  whileHover={{ rotate: 0, scale: 1.03 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-right cursor-default"
+                >
                   <div className="font-handwriting text-xl sm:text-3xl font-bold text-[#8B5CF6] leading-tight rotate-[-2deg]">
+
                     "Better Software<br />A Brighter Tomorrow"
                   </div>
                   <svg className="w-24 sm:w-28 h-3 text-[#8B5CF6]/50 ml-auto mt-1" viewBox="0 0 100 10" fill="none">
                     <path d="M0 5 Q 25 0, 50 5 T 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
                   </svg>
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
