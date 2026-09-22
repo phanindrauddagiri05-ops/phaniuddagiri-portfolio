@@ -19,7 +19,7 @@ export const Hero: React.FC = () => {
         {/* MOBILE VIEW (< lg screens): Eyebrow -> Image -> Text & Details */}
         {/* ========================================================= */}
         <div className="flex flex-col items-center lg:hidden space-y-5 text-center">
-          
+
           {/* 1. Eyebrow Badge */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -200,7 +200,7 @@ export const Hero: React.FC = () => {
             </h1>
 
             {/* Role Subtitle */}
-            <h2 className="text-xl lg:text-2xl font-medium text-slate-200 leading-snug">
+            <h2 className="text-lg lg:text-lg font-medium text-slate-200 leading-snug">
               {role}
             </h2>
 
