@@ -121,6 +121,15 @@ export const portfolioData = {
       githubUrl: "https://github.com/phanindrauddagiri05-ops/hrinfinity"
     },
     {
+      id: "gietpolytechnic",
+      title: "GIET POLYTECHNIC COLLEGE",
+      description: "Demo college website for GIET Polytechnic College featuring academic programs, admissions, campus facilities, events, faculty, and student resources.",
+      technologies: ["HTML", "CSS", "JS", "Boottrap"],
+      image: "/assets/project_chatsphere.png",
+      demoUrl: "https://gietpolytechnic.great-site.net/",
+      githubUrl: "https://github.com/phanindrauddagiri05-ops/gietpolytechniccollege"
+    },
+    {
       id: "bloodconnect",
       title: "Blood Donation Connect",
       description: "Real-time blood donation matching platform connecting urgent hospital donor requests with local registered volunteers.",

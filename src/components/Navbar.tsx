@@ -60,16 +60,16 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
         <a
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
-          className="flex items-center gap-1 text-sm font-bold tracking-tight font-mono group py-1"
+          className="flex items-center gap-1 text-xs md:text-xs lg:text-sm font-bold tracking-tight font-mono group py-1 shrink-0"
           aria-label="Phanindra Uddagiri Portfolio Home"
         >
           <span className="text-[#5B7CFF] group-hover:text-[#8B5CF6] transition-colors">{'{'}</span>
-          <span className="text-white tracking-widest px-1">PHANINDRA UDDAGIRI</span>
+          <span className="text-white tracking-wider sm:tracking-widest px-0.5 sm:px-1">PHANINDRA UDDAGIRI</span>
           <span className="text-[#8B5CF6] group-hover:text-[#5B7CFF] transition-colors">{'}'}</span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-7 lg:space-x-8">
+        <nav className="hidden md:flex items-center gap-3.5 md:gap-4 lg:gap-8">
           {navLinks.map((link) => {
             const isActive = activeSection === link.href.substring(1);
             return (
@@ -77,7 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-sm font-medium transition-colors relative py-1 ${
+                className={`text-xs lg:text-sm font-medium transition-colors relative py-1 ${
                   isActive
                     ? 'text-white font-semibold'
                     : 'text-slate-300 hover:text-white nav-link-underline'
@@ -96,18 +96,18 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           })}
         </nav>
 
-        {/* Right CTA Button (Desktop) */}
-        <div className="hidden md:block">
+        {/* Right CTA Button (Desktop & Tablet) */}
+        <div className="hidden md:block shrink-0">
           <motion.a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97, y: 0 }}
             transition={{ duration: 0.2 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-purple-500/30 group"
+            className="inline-flex items-center gap-1.5 lg:gap-2 px-3.5 py-2 lg:px-5 lg:py-2.5 rounded-full text-xs lg:text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-purple-500/30 group"
           >
             <span>Let's Talk</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4 transition-transform group-hover:translate-x-1" />
           </motion.a>
         </div>
 
