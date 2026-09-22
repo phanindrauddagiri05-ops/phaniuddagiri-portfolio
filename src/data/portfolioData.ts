@@ -125,7 +125,7 @@ export const portfolioData = {
       title: "GIET POLYTECHNIC COLLEGE",
       description: "Demo college website for GIET Polytechnic College featuring academic programs, admissions, campus facilities, events, faculty, and student resources.",
       technologies: ["HTML", "CSS", "JS", "Boottrap"],
-      image: "/assets/project_chatsphere.png",
+      image: "/assets/gietpoly.png",
       demoUrl: "https://gietpolytechnic.great-site.net/",
       githubUrl: "https://github.com/phanindrauddagiri05-ops/gietpolytechniccollege"
     },
