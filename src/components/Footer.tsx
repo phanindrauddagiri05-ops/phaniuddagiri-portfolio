@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
 import { SocialLinks } from './SocialLinks';
 
@@ -31,7 +32,13 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-[#080F1D] border-t border-slate-800/80 text-slate-400 py-8 sm:py-10 relative">
+    <motion.footer
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="bg-[#080F1D] border-t border-slate-800/80 text-slate-400 py-8 sm:py-10 relative"
+    >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
 
@@ -58,7 +65,7 @@ export const Footer: React.FC = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="px-3 py-1 sm:p-0 rounded-full sm:rounded-none bg-slate-900/60 sm:bg-transparent border border-slate-800/80 sm:border-0 text-slate-300 hover:text-white transition-colors"
+                className="px-3 py-1 sm:p-0 rounded-full sm:rounded-none bg-slate-900/60 sm:bg-transparent border border-slate-800/80 sm:border-0 text-slate-300 hover:text-white transition-colors nav-link-underline"
               >
                 {link.name}
               </a>
@@ -77,17 +84,26 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Floating Scroll to Top Button */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          aria-label="Scroll to top"
-          className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 p-2.5 sm:p-3 rounded-full bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] text-white shadow-xl hover:shadow-purple-500/30 transition-all transform hover:scale-110 active:scale-95 focus:outline-none"
-        >
-          <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
-        </button>
-      )}
-    </footer>
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            onClick={scrollToTop}
+            aria-label="Scroll to top"
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 10 }}
+            whileHover={{ scale: 1.1, y: -3 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 p-2.5 sm:p-3 rounded-full bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] text-white shadow-xl hover:shadow-purple-500/30 focus:outline-none cursor-pointer group"
+          >
+            <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:-translate-y-0.5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
+    </motion.footer>
   );
 };
+
 
 

@@ -9,9 +9,17 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="home" className="relative bg-[#0B1220] pt-24 pb-16 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 overflow-hidden">
-      {/* Background glow effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[320px] sm:w-[600px] h-[320px] sm:h-[600px] bg-blue-600/10 rounded-full blur-[90px] sm:blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 right-4 sm:right-10 w-[240px] sm:w-[400px] h-[240px] sm:h-[400px] bg-purple-600/15 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none" />
+      {/* Background Floating Glow Blobs */}
+      <motion.div
+        animate={{ x: [0, 20, 0], y: [0, -20, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[320px] sm:w-[600px] h-[320px] sm:h-[600px] bg-blue-600/10 rounded-full blur-[90px] sm:blur-[120px] pointer-events-none"
+      />
+      <motion.div
+        animate={{ x: [0, -20, 0], y: [0, 20, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/3 right-4 sm:right-10 w-[240px] sm:w-[400px] h-[240px] sm:h-[400px] bg-purple-600/15 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none"
+      />
 
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -24,30 +32,38 @@ export const Hero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold tracking-wider text-[#60A5FA] uppercase"
           >
             <span>{eyebrow}</span>
           </motion.div>
 
-          {/* 2. Profile Image & Visuals (Fixed code card size & placement so it never covers face) */}
+          {/* 2. Profile Image & Visuals */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
             className="relative w-full max-w-[320px] sm:max-w-[360px] aspect-square flex items-center justify-center my-2"
           >
-            {/* Circular Gradient Backdrop */}
-            <div className="absolute w-[210px] h-[210px] sm:w-[250px] sm:h-[250px] rounded-full bg-gradient-to-br from-[#3B82F6] via-[#6366F1] to-[#8B5CF6] opacity-90 blur-[1px] shadow-2xl shadow-purple-500/30" />
+            {/* Circular Gradient Backdrop with Glow Pulse */}
+            <motion.div
+              animate={{ opacity: [0.7, 1, 0.7], scale: [0.98, 1.02, 0.98] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute w-[210px] h-[210px] sm:w-[250px] sm:h-[250px] rounded-full bg-gradient-to-br from-[#3B82F6] via-[#6366F1] to-[#8B5CF6] blur-[2px] shadow-2xl shadow-purple-500/30"
+            />
 
-            {/* Profile Image Frame */}
-            <div className="relative z-10 p-1.5 rounded-full bg-gradient-to-br from-[#4F7CFF] via-[#6366F1] to-[#8B5CF6] shadow-2xl shadow-blue-500/20">
+            {/* Profile Image Frame with Floating Motion */}
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative z-10 p-1.5 rounded-full bg-gradient-to-br from-[#4F7CFF] via-[#6366F1] to-[#8B5CF6] shadow-2xl shadow-blue-500/20"
+            >
               <img
                 src={avatar}
                 alt={name}
                 className="w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] object-cover rounded-full bg-slate-900 border-2 border-white/20"
               />
-            </div>
+            </motion.div>
 
             {/* Handwritten Note Top-Right */}
             <motion.div
@@ -71,11 +87,11 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: [0, -5, 0] }}
               transition={{
-                opacity: { duration: 0.5, delay: 0.2 },
+                opacity: { duration: 0.5, delay: 0.8 },
                 y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' }
               }}
-              whileHover={{ scale: 1.05 }}
-              className="absolute -bottom-3 right-0 sm:right-2 z-30 code-card-glass rounded-xl p-2.5 sm:p-3 shadow-2xl max-w-[165px] sm:max-w-[190px] text-left cursor-pointer"
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="absolute -bottom-3 right-0 sm:right-2 z-30 code-card-glass rounded-xl p-2.5 sm:p-3 shadow-2xl max-w-[165px] sm:max-w-[190px] text-left cursor-pointer transition-shadow hover:shadow-blue-500/20"
             >
               {/* Card Window Controls */}
               <div className="flex items-center gap-1.5 mb-1.5">
@@ -122,7 +138,7 @@ export const Hero: React.FC = () => {
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="text-xs sm:text-sm font-medium text-slate-200 leading-relaxed max-w-sm"
           >
             {role}
@@ -132,7 +148,7 @@ export const Hero: React.FC = () => {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             className="text-xs sm:text-sm text-slate-400 max-w-md leading-relaxed"
           >
             {bio}
@@ -142,39 +158,41 @@ export const Hero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.35 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             className="flex flex-row items-center justify-center gap-3 w-full max-w-sm pt-2"
           >
-            <a
+            <motion.a
               href="#projects"
               onClick={(e) => {
                 e.preventDefault();
-                document.querySelector('#projects')?.scrollIntoView({
-                  behavior: 'smooth',
-                });
+                document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-lg shadow-blue-500/25 active:translate-y-0 text-center"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.97, y: 0 }}
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-lg shadow-blue-500/25 text-center group"
             >
               <span>View Projects</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            </motion.a>
 
-            <a
+            <motion.a
               href={portfolioData.personal.socials.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 text-center transition-all hover:scale-105 active:scale-95"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.97, y: 0 }}
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 text-center"
             >
               <Download className="w-3.5 h-3.5 text-slate-300" />
               <span>Resume</span>
-            </a>
+            </motion.a>
           </motion.div>
 
           {/* 7. Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
             className="pt-2 flex justify-center"
           >
             <SocialLinks className="flex items-center gap-5 text-slate-400" iconClassName="w-5 h-5 hover:text-white transition-colors" />
@@ -189,86 +207,123 @@ export const Hero: React.FC = () => {
         <div className="hidden lg:grid lg:grid-cols-12 gap-12 items-center">
 
           {/* Left Column Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 space-y-6 text-left"
-          >
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-sm font-semibold tracking-wider text-[#60A5FA] uppercase">
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* 1. Eyebrow */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-sm font-semibold tracking-wider text-[#60A5FA] uppercase"
+            >
               <span>{eyebrow}</span>
-            </div>
+            </motion.div>
 
-            {/* Main Heading */}
-            <h1 className="text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
+            {/* 2. Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]"
+            >
               I'm{' '}
               <span className="bg-gradient-to-r from-[#60A5FA] via-[#818CF8] to-[#C084FC] bg-clip-text text-transparent">
                 {name}
               </span>
-            </h1>
+            </motion.h1>
 
-            {/* Role Subtitle */}
-            <h2 className="text-lg lg:text-lg font-medium text-slate-200 leading-snug">
+            {/* 3. Role Subtitle */}
+            <motion.h2
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-lg lg:text-lg font-medium text-slate-200 leading-snug"
+            >
               {role}
-            </h2>
+            </motion.h2>
 
-            {/* Bio Paragraph */}
-            <p className="text-lg text-slate-400 max-w-xl leading-relaxed">
+            {/* 4. Bio Paragraph */}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-lg text-slate-400 max-w-xl leading-relaxed"
+            >
               {bio}
-            </p>
+            </motion.p>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-4 pt-2">
-              <a
+            {/* 5. Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex items-center gap-4 pt-2"
+            >
+              <motion.a
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
                   document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-lg shadow-blue-500/25 hover:shadow-purple-500/35 transition-all transform hover:-translate-y-0.5 active:translate-y-0 group"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.97, y: 0 }}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-lg shadow-blue-500/25 hover:shadow-purple-500/35 transition-all group"
               >
                 <span>View My Projects</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href={portfolioData.personal.socials.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.97, y: 0 }}
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-slate-200 bg-slate-800/50 border border-slate-700/80 hover:border-slate-500 hover:bg-slate-800 transition-all"
               >
                 <Download className="w-4 h-4 text-slate-300" />
                 <span>Download Resume</span>
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
-            {/* Social Links Row */}
-            <div className="pt-3 flex items-center gap-3">
+            {/* 6. Social Links Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="pt-3 flex items-center gap-3"
+            >
               <SocialLinks className="flex items-center gap-5 text-slate-400" iconClassName="w-5 h-5 hover:text-white transition-colors" />
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Right Column: Hero Visual & Portrait */}
+          {/* 7. Right Column: Hero Visual & Portrait */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 relative flex justify-end"
           >
             <div className="relative w-full max-w-[420px] aspect-square flex items-center justify-center">
 
-              {/* Circular Gradient Backdrop */}
-              <div className="absolute w-[320px] h-[320px] rounded-full bg-gradient-to-br from-[#3B82F6] via-[#6366F1] to-[#8B5CF6] opacity-90 blur-[1px] shadow-2xl shadow-purple-500/30 -translate-y-4" />
+              {/* Circular Gradient Backdrop with Glow Pulse */}
+              <motion.div
+                animate={{ opacity: [0.7, 1, 0.7], scale: [0.98, 1.02, 0.98] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute w-[320px] h-[320px] rounded-full bg-gradient-to-br from-[#3B82F6] via-[#6366F1] to-[#8B5CF6] blur-[2px] shadow-2xl shadow-purple-500/30 -translate-y-4"
+              />
 
-              {/* Developer Portrait Image */}
-              <div className="relative z-10 p-2 rounded-full bg-gradient-to-br from-[#4F7CFF] via-[#6366F1] to-[#8B5CF6] shadow-2xl shadow-blue-500/20 transform hover:scale-[1.02] transition-transform duration-300">
+              {/* Developer Portrait Image with Floating Motion */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+                className="relative z-10 p-2 rounded-full bg-gradient-to-br from-[#4F7CFF] via-[#6366F1] to-[#8B5CF6] shadow-2xl shadow-blue-500/20"
+              >
                 <img
                   src={avatar}
                   alt={name}
                   className="w-[290px] h-[290px] object-cover rounded-full bg-slate-900 border-2 border-white/20"
                 />
-              </div>
+              </motion.div>
 
               {/* Handwritten Note Top-Right */}
               <motion.div
@@ -282,7 +337,6 @@ export const Hero: React.FC = () => {
                   Improve<br />
                   Repeat
                 </div>
-                {/* Curly Arrow SVG */}
                 <svg className="w-8 h-8 text-blue-400 stroke-current ml-2 -mt-1 transform rotate-45" viewBox="0 0 24 24" fill="none" strokeWidth="2">
                   <path d="M4 14c4 4 10 4 14-2m0 0l-4-1m4 1l-1 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -293,11 +347,11 @@ export const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: [0, -6, 0] }}
                 transition={{
-                  opacity: { duration: 0.6, delay: 0.3 },
+                  opacity: { duration: 0.6, delay: 0.8 },
                   y: { duration: 5, repeat: Infinity, ease: 'easeInOut' }
                 }}
-                whileHover={{ scale: 1.05 }}
-                className="absolute -bottom-2 -right-6 z-30 code-card-glass rounded-xl p-4 shadow-2xl max-w-[230px] cursor-pointer"
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="absolute -bottom-2 -right-6 z-30 code-card-glass rounded-xl p-4 shadow-2xl max-w-[230px] cursor-pointer transition-shadow hover:shadow-blue-500/20"
               >
                 {/* Card Window Controls */}
                 <div className="flex items-center gap-1.5 mb-2.5">
@@ -335,5 +389,6 @@ export const Hero: React.FC = () => {
     </section>
   );
 };
+
 
 

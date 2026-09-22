@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 
 interface SocialLinksProps {
@@ -47,17 +48,21 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
   return (
     <div className={className}>
       {links.map((link) => (
-        <a
+        <motion.a
           key={link.name}
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.name}
-          className="text-slate-400 hover:text-white transition-colors duration-200 hover:scale-110 transform"
+          whileHover={{ scale: 1.12, y: -2 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          className="text-slate-400 hover:text-white transition-colors duration-200 inline-block drop-shadow-sm"
         >
           {renderSocialIcon(link.name)}
-        </a>
+        </motion.a>
       ))}
     </div>
   );
 };
+

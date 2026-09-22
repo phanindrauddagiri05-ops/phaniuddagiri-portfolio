@@ -68,6 +68,25 @@ body {
   box-shadow: 0px 12px 30px rgba(79, 124, 255, 0.08), 0px 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+/* Nav Underline Grow Effect */
+.nav-link-underline {
+  position: relative;
+}
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #5B7CFF, #8B5CF6);
+  border-radius: 9999px;
+  transition: width 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link-underline:hover::after {
+  width: 100%;
+}
+
 /* Glass & Code Card */
 .code-card-glass {
   background: rgba(16, 24, 39, 0.75);
@@ -105,4 +124,15 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 

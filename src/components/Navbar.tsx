@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, X, ArrowRight, Home, User, Code2, Briefcase, GraduationCap, Mail } from 'lucide-react';
 
 interface NavbarProps {
@@ -76,14 +77,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-sm font-medium transition-colors relative py-1 ${isActive
-                  ? 'text-white font-semibold'
-                  : 'text-slate-300 hover:text-white'
-                  }`}
+                className={`text-sm font-medium transition-colors relative py-1 ${
+                  isActive
+                    ? 'text-white font-semibold'
+                    : 'text-slate-300 hover:text-white nav-link-underline'
+                }`}
               >
                 {link.name}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#5B7CFF] to-[#8B5CF6] rounded-full" />
+                  <motion.span
+                    layoutId="activeSectionIndicator"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#5B7CFF] to-[#8B5CF6] rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
                 )}
               </a>
             );
@@ -92,14 +98,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
         {/* Right CTA Button (Desktop) */}
         <div className="hidden md:block">
-          <a
+          <motion.a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-purple-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+            whileHover={{ scale: 1.03, y: -2 }}
+            whileTap={{ scale: 0.97, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#4F7CFF] to-[#8B5CF6] hover:from-[#3B66FF] hover:to-[#7C3AED] shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-purple-500/30 group"
           >
             <span>Let's Talk</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </motion.a>
         </div>
 
         {/* Mobile Hamburger Button */}
@@ -108,6 +117,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800/80 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6" />}
